@@ -1,0 +1,3 @@
+1/ clone git repo: git clone https://github.com/DexterInd/BrickPi3.git
+2/ copy file BrickPi3/Software/Python/brickpi3.py
+3/ paste file in Python lib directory

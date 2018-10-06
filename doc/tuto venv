@@ -1,0 +1,6 @@
+# use the venv :
+cd ~/mtg-scanner
+source venv/bin/activate
+
+# exit the venv
+deactivate

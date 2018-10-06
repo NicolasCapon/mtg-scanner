@@ -1,0 +1,2 @@
+picamera==1.13
+spidev==3.2
