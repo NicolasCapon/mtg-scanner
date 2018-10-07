@@ -21,40 +21,61 @@ import brickpi3 # import the BrickPi3 drivers
 import picamera
 
 BP = brickpi3.BrickPi3() # Create an instance of the BrickPi3 class. BP will be the BrickPi3 object.
+
 main_motor = BP.PORT_B
 sec_motor = BP.PORT_C
 drop_motor = BP.PORT_A
-BP.set_motor_limits(BP.PORT_C, 50)
+sort_motor = BP.PORT_D
+
+BP.set_motor_limits(sec_motor, 50)
 
 def drop_cards():
+    """Pick a card"""
     try:
+        turn_order = 846
         while True:
-            BP.set_motor_power(main_motor, -50)
-            time.sleep(0.3)
-            BP.set_motor_power(sec_motor, 50)
-            time.sleep(0.5)
-            BP.set_motor_power(main_motor, 0)
-            time.sleep(1)
-            BP.set_motor_power(sec_motor, 0)
+            pick()
             input("Press Enter to drop a card")
-            capture()
+            # capture()
             drop()
+            turn_order = -turn_order
+            # turn(turn_order)
 
     except KeyboardInterrupt:
         BP.reset_all()
         pass
 
+def pick():
+    """Pick a card"""
+    BP.set_motor_power(main_motor, -50)
+    time.sleep(0.3)
+    BP.set_motor_power(sec_motor, 50)
+    time.sleep(0.5)
+    BP.set_motor_power(main_motor, 0)
+    time.sleep(1)
+    BP.set_motor_power(sec_motor, 0)
+    
 def drop():
-    # Make a 360 turn
+    """Make a 360 turn to drop the card"""
     BP.offset_motor_encoder(drop_motor, BP.get_motor_encoder(drop_motor))
     BP.set_motor_limits(drop_motor, 50, 400)
     BP.set_motor_position(drop_motor, -365)
+    time.sleep(1)
 
 def capture():
-    """Take picture"""
+    """Take picture
+       TODO: Problem when taking second picture"""
     camera = picamera.PiCamera()
-    camera.capture('/home/pi/Desktop/scanner/images/capture.jpg', quality=100)
+    camera.capture('capture.jpg', quality=100)
+
+def turn(pos):
+    """Set sorter motor at pos x in degrees.
+       ex: -846"""
+    BP.offset_motor_encoder(sort_motor, BP.get_motor_encoder(sort_motor))
+    BP.set_motor_limits(sort_motor, 50, 175)
+    BP.set_motor_position(sort_motor, pos)
 
 
 drop_cards()
 BP.reset_all()
+print("END")
