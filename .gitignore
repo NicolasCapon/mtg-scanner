@@ -1,6 +1,9 @@
 #BrickPi3 module
 BrickPi3/
 
+#Photos
+.jpg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
