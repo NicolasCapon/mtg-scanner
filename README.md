@@ -28,4 +28,4 @@ Major tasks:
 - [ ] Create first image sorting by color
 - [ ] Reach 90% precision on image sorting
 - [ ] Add other sorting options
-
+- [ ] Create documentations
