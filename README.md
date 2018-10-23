@@ -2,12 +2,12 @@
 Lego scanner for mtg cards
 
 ## Goal
-Create a lego dispatcher for MTG cards connected with a camera to sort and/or digitalize a collection.
+Create a MTG cards dispenser in Lego, connected with a camera to sort and/or digitalize a collection.
 
 ## Built with
 
 ### Software
-* python
+* python3
 * opencv
 * phash python bindings
 * brickpi python bindings
@@ -16,4 +16,4 @@ Create a lego dispatcher for MTG cards connected with a camera to sort and/or di
 * Lego mindstorms
 * Raspberry Pi
 * Picamera
-* BrickPi
+* BrickPi3
